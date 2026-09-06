@@ -142,3 +142,60 @@
     color: var(--color-foreground);
   }
 }
+
+/* ── Maison Cleo brand tokens ───────────────────────────── */
+:root {
+  --radius: 0rem;
+  --background: oklch(0.995 0.012 100);      /* #FFFEF9 warm white */
+  --foreground: oklch(0.15 0 0);             /* #0A0A0A near black */
+  --card: oklch(0.995 0.012 100);
+  --card-foreground: oklch(0.15 0 0);
+  --popover: oklch(0.995 0.012 100);
+  --popover-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.15 0 0);
+  --primary-foreground: oklch(0.995 0.012 100);
+  --secondary: oklch(0.891 0.031 85);        /* #E8DCC8 warm sand */
+  --secondary-foreground: oklch(0.15 0 0);
+  --muted: oklch(0.955 0.014 90);
+  --muted-foreground: oklch(0.5 0.015 60);
+  --accent: oklch(0.577 0.128 45);           /* #C4622D terracotta */
+  --accent-foreground: oklch(0.995 0.012 100);
+  --border: oklch(0.9 0.014 85);
+  --input: oklch(0.9 0.014 85);
+  --ring: oklch(0.577 0.128 45);
+  --sand: oklch(0.891 0.031 85);
+  --terracotta: oklch(0.577 0.128 45);
+  --ink: oklch(0.15 0 0);
+}
+
+@theme inline {
+  --color-sand: var(--sand);
+  --color-terracotta: var(--terracotta);
+  --color-ink: var(--ink);
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "Jost", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+@utility price {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+@keyframes kenburns {
+  0%   { transform: scale(1) translate3d(0,0,0); }
+  100% { transform: scale(1.14) translate3d(0,-1.2%,0); }
+}
+.animate-kenburns { animation: kenburns 8s ease-out forwards; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

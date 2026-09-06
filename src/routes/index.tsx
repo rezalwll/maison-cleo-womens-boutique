@@ -1,24 +1,55 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/site/Navbar";
+import { Hero } from "@/components/site/Hero";
+import { NewArrivals, Bestsellers } from "@/components/site/Products";
+import { Categories, Brands, Lookbook } from "@/components/site/Editorial";
+import {
+  About,
+  Reviews,
+  Newsletter,
+  InstagramRow,
+  Footer,
+} from "@/components/site/Story";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Maison Cleo | Women's Clothing Boutique in Nashville, TN" },
+      {
+        name: "description",
+        content:
+          "Curated style, effortlessly yours. Shop new arrivals from Vince, Ulla Johnson, Rails and more at Maison Cleo in Nashville.",
+      },
+      { property: "og:title", content: "Maison Cleo | Nashville Women's Boutique" },
+      {
+        property: "og:description",
+        content:
+          "A curated Nashville boutique of contemporary women's clothing — new arrivals, lookbooks, and personal styling.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      <Navbar />
+      <main>
+        <Hero />
+        <NewArrivals />
+        <Categories />
+        <Brands />
+        <Lookbook />
+        <Bestsellers />
+        <About />
+        <Reviews />
+        <Newsletter />
+        <InstagramRow />
+      </main>
+      <Footer />
     </div>
   );
 }
