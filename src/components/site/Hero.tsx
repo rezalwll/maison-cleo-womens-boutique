@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
 import hero from "@/assets/hero.jpg";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -24,13 +23,7 @@ export function Hero() {
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/45 to-transparent" />
 
       <div className="pad-x relative mx-auto flex h-full max-w-[1500px] items-end pb-20 md:items-center md:pb-0">
-        <motion.div
-          initial={{ opacity: 0, y: 26 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={reduced ? { duration: 0 } : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          className="max-w-2xl text-white"
-        >
+        <div className="animate-fadeup max-w-2xl text-white">
           <p className="label-xs text-white/80">{t("home.eyebrow")}</p>
           <h1 className="hero-type mt-5 uppercase">
             {t("home.heroLine1")}
@@ -54,7 +47,7 @@ export function Hero() {
               {t("home.ctaSecondary")}
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -278,11 +278,18 @@
 }
 .animate-kenburns { animation: kenburns 8s linear forwards; }
 
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeup { animation: fadeup 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
+
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-kenburns { animation: none; }
+  .animate-fadeup { animation: none; opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
