@@ -11,7 +11,9 @@ export function Hero() {
         height={1088}
         className="animate-kenburns absolute inset-0 h-full w-full object-cover object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-ink/25 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/45 to-ink/10" />
+
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/45 to-transparent" />
 
       <div className="relative mx-auto flex h-full max-w-[1400px] items-end px-5 pb-20 md:items-center md:px-10 md:pb-0">
         <motion.div
