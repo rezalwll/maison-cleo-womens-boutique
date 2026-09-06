@@ -1,15 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
-import { NewArrivals, Bestsellers } from "@/components/site/Products";
-import { Categories, Brands, Lookbook } from "@/components/site/Editorial";
 import {
-  About,
-  Reviews,
-  Newsletter,
-  InstagramRow,
-  Footer,
-} from "@/components/site/Story";
+  NewArrivalsSection,
+  CategoriesSection,
+  BrandsSection,
+  LookbookSection,
+  BestsellersSection,
+  StorySection,
+  ReviewsSection,
+  InstagramSection,
+} from "@/components/site/HomeSections";
+import { Newsletter } from "@/components/forms/Newsletter";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "A curated Nashville boutique of contemporary women's clothing — new arrivals, lookbooks, and personal styling.",
+          "A curated Nashville boutique of contemporary women's clothing — new arrivals, lookbooks and personal styling.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,21 +36,17 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-      <main>
-        <Hero />
-        <NewArrivals />
-        <Categories />
-        <Brands />
-        <Lookbook />
-        <Bestsellers />
-        <About />
-        <Reviews />
-        <Newsletter />
-        <InstagramRow />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Hero />
+      <NewArrivalsSection />
+      <CategoriesSection />
+      <BrandsSection />
+      <LookbookSection />
+      <BestsellersSection />
+      <StorySection />
+      <ReviewsSection />
+      <Newsletter />
+      <InstagramSection />
+    </>
   );
 }
