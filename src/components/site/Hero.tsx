@@ -25,9 +25,10 @@ export function Hero() {
 
       <div className="pad-x relative mx-auto flex h-full max-w-[1500px] items-end pb-20 md:items-center md:pb-0">
         <motion.div
-          initial={reduced ? false : { opacity: 0, y: 26 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={reduced ? { duration: 0 } : { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           className="max-w-2xl text-white"
         >
           <p className="label-xs text-white/80">{t("home.eyebrow")}</p>
