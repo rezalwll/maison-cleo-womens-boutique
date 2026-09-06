@@ -1,44 +1,58 @@
 import { motion } from "motion/react";
+import { Link } from "@tanstack/react-router";
 import hero from "@/assets/hero.jpg";
+import { usePreferences } from "@/context/PreferencesContext";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function Hero() {
+  const { t } = usePreferences();
+  const reduced = useReducedMotion();
+
   return (
-    <section id="top" className="relative h-[92vh] min-h-[560px] w-full overflow-hidden">
+    <section className="relative h-[86svh] min-h-[560px] w-full overflow-hidden md:h-[100svh]">
       <img
         src={hero}
         alt="Maison Cleo autumn campaign: woman in ivory silk blouse and camel trousers"
         width={1920}
         height={1088}
-        className="animate-kenburns absolute inset-0 h-full w-full object-cover object-center"
+        fetchPriority="high"
+        className={`absolute inset-0 h-full w-full object-cover object-center ${
+          reduced ? "" : "animate-kenburns"
+        }`}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/45 to-ink/10" />
-
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/40 to-ink/5" />
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/45 to-transparent" />
 
-      <div className="relative mx-auto flex h-full max-w-[1400px] items-end px-5 pb-20 md:items-center md:px-10 md:pb-0">
+      <div className="pad-x relative mx-auto flex h-full max-w-[1500px] items-end pb-20 md:items-center md:pb-0">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={reduced ? false : { opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="max-w-xl text-background"
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          className="max-w-2xl text-white"
         >
-          <p className="text-[11px] uppercase tracking-[0.35em] text-background/80">
-            The Autumn Edit — Fall 2026
-          </p>
-          <h1 className="mt-5 font-display text-[13vw] font-bold uppercase leading-[0.88] tracking-tight md:text-[5.2rem]">
-            Curated Style,
+          <p className="label-xs text-white/80">{t("home.eyebrow")}</p>
+          <h1 className="hero-type mt-5 uppercase">
+            {t("home.heroLine1")}
             <br />
-            Effortlessly Yours
+            {t("home.heroLine2")}
           </h1>
-          <p className="mt-6 max-w-md text-sm font-light leading-relaxed text-background/85">
-            A Nashville boutique of quietly beautiful pieces — chosen by hand, worn every day.
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/85">
+            {t("home.newArrivalsSub")}
           </p>
-          <a
-            href="#new-arrivals"
-            className="mt-9 inline-block bg-terracotta px-9 py-4 text-[11px] uppercase tracking-[0.28em] text-background transition-colors hover:bg-terracotta/85"
-          >
-            Shop New Arrivals
-          </a>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link
+              to="/new-arrivals"
+              className="bg-terracotta px-9 py-4 text-[11px] uppercase tracking-[0.2em] text-white transition-colors hover:bg-terracotta/85"
+            >
+              {t("home.cta")}
+            </Link>
+            <Link
+              to="/lookbook"
+              className="border border-white/60 px-9 py-4 text-[11px] uppercase tracking-[0.2em] text-white transition-colors hover:bg-white/10"
+            >
+              {t("home.ctaSecondary")}
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

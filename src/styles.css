@@ -143,46 +143,100 @@
   }
 }
 
-/* ── Maison Cleo brand tokens ───────────────────────────── */
+/* ── Maison Cleo design tokens ──────────────────────────── */
 :root {
-  --radius: 0rem;
+  --radius: 0.125rem;
   --background: oklch(0.995 0.012 100);      /* #FFFEF9 warm white */
-  --foreground: oklch(0.15 0 0);             /* #0A0A0A near black */
+  --surface: oklch(0.965 0.014 88);          /* #F7F3EA */
+  --foreground: oklch(0.15 0 0);             /* #0A0A0A */
   --card: oklch(0.995 0.012 100);
   --card-foreground: oklch(0.15 0 0);
   --popover: oklch(0.995 0.012 100);
   --popover-foreground: oklch(0.15 0 0);
   --primary: oklch(0.15 0 0);
   --primary-foreground: oklch(0.995 0.012 100);
-  --secondary: oklch(0.891 0.031 85);        /* #E8DCC8 warm sand */
+  --secondary: oklch(0.891 0.031 85);        /* #E8DCC8 sand */
   --secondary-foreground: oklch(0.15 0 0);
-  --muted: oklch(0.955 0.014 90);
+  --muted: oklch(0.955 0.014 90);            /* #F1ECE3 */
   --muted-foreground: oklch(0.5 0.015 60);
   --accent: oklch(0.577 0.128 45);           /* #C4622D terracotta */
   --accent-foreground: oklch(0.995 0.012 100);
+  --accent-hover: oklch(0.52 0.126 44);
   --border: oklch(0.9 0.014 85);
   --input: oklch(0.9 0.014 85);
   --ring: oklch(0.577 0.128 45);
   --sand: oklch(0.891 0.031 85);
   --terracotta: oklch(0.577 0.128 45);
   --ink: oklch(0.15 0 0);
+  --sale: oklch(0.577 0.128 45);
+}
+
+.dark {
+  --background: oklch(0.17 0.004 80);        /* #11100E */
+  --surface: oklch(0.212 0.006 85);          /* #181714 */
+  --foreground: oklch(0.968 0.012 90);       /* #F8F4EC */
+  --card: oklch(0.212 0.006 85);
+  --card-foreground: oklch(0.968 0.012 90);
+  --popover: oklch(0.212 0.006 85);
+  --popover-foreground: oklch(0.968 0.012 90);
+  --primary: oklch(0.968 0.012 90);
+  --primary-foreground: oklch(0.17 0.004 80);
+  --secondary: oklch(0.285 0.012 72);        /* #302B24 */
+  --secondary-foreground: oklch(0.968 0.012 90);
+  --muted: oklch(0.235 0.006 80);
+  --muted-foreground: oklch(0.72 0.01 85);
+  --accent: oklch(0.665 0.126 46);           /* #D77A4C */
+  --accent-foreground: oklch(0.17 0.004 80);
+  --accent-hover: oklch(0.715 0.122 47);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.665 0.126 46);
+  --sand: oklch(0.285 0.012 72);
+  --terracotta: oklch(0.665 0.126 46);
+  --ink: oklch(0.17 0.004 80);
+  --sale: oklch(0.665 0.126 46);
 }
 
 @theme inline {
+  --color-surface: var(--surface);
   --color-sand: var(--sand);
   --color-terracotta: var(--terracotta);
   --color-ink: var(--ink);
-  --font-display: "Oswald", "Arial Narrow", sans-serif;
-  --font-body: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --color-sale: var(--sale);
+  --font-display: "Archivo Narrow", "Roboto Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-fa: "Vazirmatn", "Inter", sans-serif;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .font-fa body,
+  html.font-fa {
+    font-family: var(--font-fa);
   }
   h1, h2, h3, .font-display {
     font-family: var(--font-display);
+  }
+  html.font-fa h1,
+  html.font-fa h2,
+  html.font-fa h3,
+  html.font-fa .font-display {
+    font-family: var(--font-fa);
+    letter-spacing: 0;
+  }
+  html.font-fa .uppercase {
+    text-transform: none;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 }
 
@@ -191,11 +245,47 @@
   letter-spacing: 0.02em;
 }
 
-@keyframes kenburns {
-  0%   { transform: scale(1) translate3d(0,0,0); }
-  100% { transform: scale(1.14) translate3d(0,-1.2%,0); }
+@utility label-xs {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
 }
-.animate-kenburns { animation: kenburns 8s ease-out forwards; }
+
+@utility pad-x {
+  padding-inline: 20px;
+  @media (min-width: 768px) { padding-inline: 32px; }
+  @media (min-width: 1024px) { padding-inline: 48px; }
+  @media (min-width: 1536px) { padding-inline: 64px; }
+}
+
+@utility hero-type {
+  font-size: clamp(64px, 9vw, 150px);
+  line-height: 0.86;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+@utility section-type {
+  font-size: clamp(38px, 6vw, 86px);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+@keyframes kenburns {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.07); }
+}
+.animate-kenburns { animation: kenburns 8s linear forwards; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-kenburns { animation: none; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
