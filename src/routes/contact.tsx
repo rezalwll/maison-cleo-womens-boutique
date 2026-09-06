@@ -6,9 +6,8 @@ import { store } from "@/lib/store.config";
 import type { TKey } from "@/i18n/en";
 
 export const Route = createFileRoute("/contact")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    topic: typeof search.topic === "string" ? search.topic : "",
-  }),
+  validateSearch: (search: Record<string, unknown>): { topic?: string } =>
+    typeof search["topic"] === "string" ? { topic: search["topic"] } : {},
   head: () => ({
     meta: [
       { title: "Contact | Maison Cleo Nashville" },
@@ -37,7 +36,7 @@ function ContactPage() {
   const { t } = usePreferences();
   const { topic } = Route.useSearch();
   const [sent, setSent] = useState(false);
-  const [selected, setSelected] = useState(topic || "product");
+  const [selected, setSelected] = useState(topic ?? "product");
 
   const field =
     "mt-2 w-full border border-border bg-transparent px-4 py-3 text-sm outline-none focus:border-foreground";

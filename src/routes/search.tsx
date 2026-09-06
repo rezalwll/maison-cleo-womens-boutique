@@ -7,9 +7,8 @@ import { searchProducts } from "@/lib/commerce";
 import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/search")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    q: typeof search.q === "string" ? search.q : "",
-  }),
+  validateSearch: (search: Record<string, unknown>): { q?: string } =>
+    typeof search["q"] === "string" ? { q: search["q"] } : {},
   head: () => ({
     meta: [
       { title: "Search | Maison Cleo" },
@@ -23,7 +22,7 @@ export const Route = createFileRoute("/search")({
 });
 
 function SearchPage() {
-  const { q } = Route.useSearch();
+  const { q = "" } = Route.useSearch();
   const navigate = Route.useNavigate();
   const { t } = usePreferences();
   const [value, setValue] = useState(q);
